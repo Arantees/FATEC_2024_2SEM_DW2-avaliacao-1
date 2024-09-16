@@ -31,7 +31,7 @@ A estrutura de diretórios do projeto é a seguinte:
 └── docker-compose.yml
 ```
 
-## Estrutura do Projeto
+## Pre Requisitos
 
 - Docker instalado na sua máquina.
 - Docker Compose instalado.
