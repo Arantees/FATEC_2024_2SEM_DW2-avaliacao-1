@@ -6,9 +6,8 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 $pokemons = json_decode(curl_exec($ch));
 
 if (count($pokemons->pokemon)) {
-  shuffle($pokemons->pokemon); // Embaralha o array
+  shuffle($pokemons->pokemon);
   $pokemonsSelecionados = array_slice($pokemons->pokemon, 0, 6);
-  $pokemonsSelecionados = [];
 }
 ?>
 <!DOCTYPE html>
