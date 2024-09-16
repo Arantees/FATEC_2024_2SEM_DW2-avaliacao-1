@@ -21,7 +21,7 @@ Este projeto é uma aplicação simples em PHP que utiliza Docker e Nginx como s
 ## Estrutura do Projeto
 
 A estrutura de diretórios do projeto é a seguinte:
-
+```bash
 /seu-projeto
 ├── app
 │   └── index.php
@@ -31,7 +31,7 @@ A estrutura de diretórios do projeto é a seguinte:
 └── docker-compose.yml
 ```
 
-## Pré-requisitos
+## Estrutura do Projeto
 
 - Docker instalado na sua máquina.
 - Docker Compose instalado.
