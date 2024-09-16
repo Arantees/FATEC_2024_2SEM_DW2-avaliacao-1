@@ -41,7 +41,6 @@ A estrutura de diretórios do projeto é a seguinte:
 1. Clone o repositório:
    ```bash
    git clone https://github.com/Arantees/FATEC_2024_2SEM_DW2-avaliacao-1.git
-   ```
 
 2. Navegue até o diretório do projeto:
    ```bash
