@@ -22,7 +22,6 @@ Este projeto é uma aplicação simples em PHP que utiliza Docker e Nginx como s
 
 A estrutura de diretórios do projeto é a seguinte:
 
-```
 /seu-projeto
 ├── app
 │   └── index.php
