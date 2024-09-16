@@ -21,73 +21,74 @@ if (count($pokemons->pokemon)) {
   <title>Pokemóns</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="canalti.css">
+
+  <style>
+    .card-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-image img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 
 <body>
-  <section class="hero is-info is-small">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <p class="title">
-          Canal TI - Listagem de Pokémons Aleatórios
-        </p>
-        <p class="subtitle">
-          Consumo de API com PHP
-        </p>
-      </div>
+  <section class="bg-info text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Canal TI - Listagem de Pokémons Aleatórios</h1>
+      <p class="lead">Consumo de API com PHP</p>
     </div>
   </section>
-  <div class="box cta">
-    <p class="has-text-centered">
-      <span class="tag is-danger">Inscreva-se</span> <a target="_blank" href="https://www.youtube.com/channel/UCEQ-nGDGFupHyta90z6hVNQ?sub_confirmation=1">Canal TI</a>
-    </p>
+
+  <div class="alert alert-danger text-center">
+    <span class="badge badge-danger">Inscreva-se</span>
+    <a target="_blank" href="https://www.youtube.com/channel/UCEQ-nGDGFupHyta90z6hVNQ?sub_confirmation=1" class="text-danger">Canal TI</a>
   </div>
+
   <section class="container">
-    <div class="columns is-multiline">
+    <div class="row">
       <?php if (count($pokemonsSelecionados)) {
-        $i = 0;
-        foreach ($pokemonsSelecionados as $Pokemon) {
-          $i++; ?>
-          <div class="column is-4">
+        foreach ($pokemonsSelecionados as $Pokemon) { ?>
+          <div class="col-md-4 mb-4">
             <div class="card">
-              <div class="card-image has-text-centered">
-                <figure class="image is-128x128">
-                  <img src="<?= $Pokemon->img ?>" alt="<?= $Pokemon->name ?>">
-                </figure>
+              <div class="card-image">
+                <img src="<?= $Pokemon->img ?>" alt="<?= $Pokemon->name ?>">
               </div>
-              <div class="card-content has-text-centered">
-                <div class="content">
-                  <h4><?= $Pokemon->name ?></h4>
-                  <p>
-                  <ul>
-                    <?php
-                    if (isset($Pokemon->next_evolution) && count($Pokemon->next_evolution)) {
-                      echo "Próximas evoluções: ";
-                      foreach ($Pokemon->next_evolution as $ProximaEvolucao) {
-                        echo " < " . $ProximaEvolucao->name . " > ";
-                      }
-                    } else {
-                      echo "Não possui próximas evoluções ";
+              <div class="card-body text-center">
+                <h5 class="card-title"><?= $Pokemon->name ?></h5>
+                <p class="card-text">
+                  <?php
+                  if (isset($Pokemon->next_evolution) && count($Pokemon->next_evolution)) {
+                    echo "Próximas evoluções: ";
+                    foreach ($Pokemon->next_evolution as $ProximaEvolucao) {
+                      echo " < " . $ProximaEvolucao->name . " > ";
                     }
-                    ?>
-                  </ul>
-                  </p>
-                </div>
+                  } else {
+                    echo "Não possui próximas evoluções ";
+                  }
+                  ?>
+                </p>
               </div>
             </div>
           </div>
-          <?php if ($i % 3 == 0) {
-          ?>
-    </div>
-    <div class="columns is-multiline">
-  <?php }
-        }
+        <?php }
       } else { ?>
-  <strong>Nenhum Pokémon retornado pela API</strong>
-<?php } ?>
+        <div class="col-12 text-center">
+          <strong>Nenhum Pokémon retornado pela API</strong>
+        </div>
+      <?php } ?>
     </div>
   </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

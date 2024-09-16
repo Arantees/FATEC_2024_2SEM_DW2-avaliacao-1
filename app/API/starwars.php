@@ -1,5 +1,5 @@
 <?php
-$url = "https://swapi.dev/api/people/"; // URL da API SWAPI para listar personagens
+$url = "https://swapi.dev/api/people/";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -15,10 +15,9 @@ if (isset($starwars->results)) {
 function getPersonagemId($url) {
     // Extrai o ID do personagem do URL da SWAPI
     $parts = explode('/', rtrim($url, '/'));
-    return end($parts); // Último elemento é o ID
+    return end($parts);
 }
 
-// Limitar a 10 personagens
 $personagens = array_slice($personagens, 0, 10);
 ?>
 <!DOCTYPE html>
@@ -27,7 +26,7 @@ $personagens = array_slice($personagens, 0, 10);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars Personagens</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .card-background {
             background-size: cover;
@@ -52,31 +51,32 @@ $personagens = array_slice($personagens, 0, 10);
             color: white;
             text-align: center;
         }
+        .nomePersonagem
     </style>
 </head>
 <body>
-    <section class="hero is-primary">
-        <div class="hero-body">
+    <section class="bg-primary text-white text-center py-5">
+        <div class="container">
             <div class="container has-text-centered">
-                <h1 class="title">Star Wars Personagens</h1>
-                <h2 class="subtitle">Com Imagens de Todos os Personagens</h2>
+                <h1 class="display-4">Star Wars Personagens</h1>
+                <h2 class="lead">Com Imagens de Todos os Personagens</h2>
             </div>
         </div>
     </section>
 
-    <section class="container">
-        <div class="columns is-multiline">
+    <section class="container py-5">
+        <div class="row">
             <?php if (count($personagens)) {
                 foreach ($personagens as $personagem) {
                     $id = getPersonagemId($personagem->url);
                     $imagem = "https://starwars-visualguide.com/assets/img/characters/$id.jpg"; ?>
 
-                    <div class="column is-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-background" style="background-image: url('<?=$imagem?>');">
                                 <div class="overlay">
                                     <div>
-                                        <h4 class="title"><?=$personagem->name?></h4>
+                                        <h5 class="card-title"><?=$personagem->name?></h5>
                                         <p>Altura: <?=$personagem->height?> cm</p>
                                         <p>Cor do cabelo: <?=$personagem->hair_color?></p>
                                         <p>Gênero: <?=$personagem->gender?></p>
@@ -92,5 +92,8 @@ $personagens = array_slice($personagens, 0, 10);
             <?php } ?>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
